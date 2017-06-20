@@ -1,0 +1,17 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: client-with-ribbon
+
+#不使用Eureka服务发现机制
+ribbon:
+  eureka:
+    enabled: false
+
+#服务提供方列表
+user-service-provider:
+  ribbon:
+    listOfServers: localhost:8888,localhost:8889,localhost:8890
+    #服务路由策略，还可以指定其他的策略，如 NFLoadBalancerPingClassName，NIWSServerListFilterClassName等，也可以自定义实现这些策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
